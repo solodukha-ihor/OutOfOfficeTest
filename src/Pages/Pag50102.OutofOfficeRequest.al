@@ -1,7 +1,7 @@
-page 50102 "Out of Office Request"
+page 50102 "Out of Office Request(Doc)"
 {
     ApplicationArea = All;
-    Caption = 'Out of Office Request';
+    Caption = 'Out of Office Request(Document)';
     PageType = Document;
     SourceTable = "Out of Office Request";
     
@@ -42,7 +42,10 @@ page 50102 "Out of Office Request"
                     ShowMandatory = true;
                     Importance = Promoted;
                 }
-                field("Entry No."; Rec."Entry No.") {}
+                field("Entry No."; Rec."Entry No.") 
+                {
+                    Editable = false;
+                }
                 field("Reason Code"; Rec."Reason Code")
                 {
                     ShowMandatory = true;

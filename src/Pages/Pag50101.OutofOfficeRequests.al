@@ -26,4 +26,24 @@ page 50101 "Out of Office Requests"
             }
         }
     }
+    actions
+    {
+        area(Processing)
+        {
+            action(NewRequest)
+            {
+                Caption = 'New Request Out of Office';
+                Promoted = true;
+                PromotedCategory = Process;
+                trigger OnAction()
+                var
+                    NewOutOfOfficeRequest: Record "Out of Office Request";
+                begin
+                    NewOutOfOfficeRequest.Init();
+                    NewOutOfOfficeRequest.Insert(true);
+                    Page.Run(50102, NewOutOfOfficeRequest);
+                end;
+            }
+        }
+    }
 }

@@ -66,4 +66,10 @@ table 50101 "Out of Office Request"
             Clustered = true;
         }
     }
+
+    trigger OnModify()
+    begin
+        if Description = '' then
+            Error('Description is mandatory and cannot be empty.');
+    end;
 }
