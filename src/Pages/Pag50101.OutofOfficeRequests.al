@@ -23,6 +23,19 @@ page 50101 "Out of Office Requests"
                 field("Start Date"; Rec."Start Date") {}
                 field("Start Time"; Rec."Start Time") {}
                 field(Status; Rec.Status) {}
+                field(Delete; 'Remove')
+                {
+                    ApplicationArea = All;
+                    Caption = 'Delete';
+                    Editable = false;
+                    trigger OnDrillDown()
+                    begin
+                        if not Confirm('Are you sure you want to delete this record?', false) then
+                            exit;
+                        Rec.Delete();
+                        CurrPage.Update();
+                    end;
+                }
             }
         }
     }
