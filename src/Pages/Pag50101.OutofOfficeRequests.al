@@ -45,26 +45,6 @@ page 50101 "Out of Office Requests"
             group(Line)
             {
                 Caption = 'Line';
-                action(DoWork)
-                {
-                    ApplicationArea = Basic, Suite;
-
-                   Caption = 'Do Work';
-
-                   Image = Document;
-
-                   Promoted = true;
-
-                   Scope = Repeater;
-
-                   trigger OnAction()
-
-                   begin
-
-                       Message('Did Work!');
-
-                   end;
-                }
                 action(Modify)
                 {
                     Caption = 'Modify';
