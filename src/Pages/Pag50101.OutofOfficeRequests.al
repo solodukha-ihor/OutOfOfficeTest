@@ -12,17 +12,15 @@ page 50101 "Out of Office Requests"
         {
             repeater(General)
             {
-                
-                field(Description; Rec.Description) {}
-                field("Employee No."; Rec."Employee No.") {}
-                field("End Date"; Rec."End Date") {}
-                field("End Time"; Rec."End Time") {}                
-                field("Entry No."; Rec."Entry No.") {}
+                field(Status; Rec.Status) {}
+                field("Start Time"; Rec."Start Time") {}
+                field("End Time"; Rec."End Time") {} 
+                field("Start Date"; Rec."Start Date") {}  
+                field("End Date"; Rec."End Date") {}  
+                field("Employee No."; Rec."Employee No.") {}            
+                field(Description; Rec.Description) {}              
                 field("Reason Code"; Rec."Reason Code") {}
                 field("Rejection reason"; Rec."Rejection reason") {}
-                field("Start Date"; Rec."Start Date") {}
-                field("Start Time"; Rec."Start Time") {}
-                field(Status; Rec.Status) {}
                 field(Delete; 'Remove')
                 {
                     ApplicationArea = All;
