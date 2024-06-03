@@ -21,19 +21,6 @@ page 50101 "Out of Office Requests"
                 field(Description; Rec.Description) {}              
                 field("Reason Code"; Rec."Reason Code") {}
                 field("Rejection reason"; Rec."Rejection reason") {}
-                field(Delete; 'Remove')
-                {
-                    ApplicationArea = All;
-                    Caption = 'Delete';
-                    Editable = false;
-                    trigger OnDrillDown()
-                    begin
-                        if not Confirm('Are you sure you want to delete this record?', false) then
-                            exit;
-                        Rec.Delete();
-                        CurrPage.Update();
-                    end;
-                }
             }
         }
     }
@@ -55,6 +42,58 @@ page 50101 "Out of Office Requests"
                     Page.Run(50102, NewOutOfOfficeRequest);
                 end;
             }
+            group(Line)
+            {
+                Caption = 'Line';
+                action(DoWork)
+                {
+                    ApplicationArea = Basic, Suite;
+
+                   Caption = 'Do Work';
+
+                   Image = Document;
+
+                   Promoted = true;
+
+                   Scope = Repeater;
+
+                   trigger OnAction()
+
+                   begin
+
+                       Message('Did Work!');
+
+                   end;
+                }
+                action(Modify)
+                {
+                    Caption = 'Modify';
+                    ApplicationArea = Basic, Suite;
+                    Image = DocumentEdit;
+                    Promoted = true;
+                    Scope = Repeater;
+                    trigger OnAction()
+                    begin
+                        Page.Run(50102, Rec);
+                    end;
+                }
+                action(Remove)
+                {
+                    Caption = 'Delete';
+                    ApplicationArea = Basic, Suite;
+                    Image = RemoveLine;
+                    Promoted = true;
+                    Scope = Repeater;
+                    trigger OnAction()
+                    begin
+                        if not Confirm('Are you sure you want to delete this record?', false) then
+                            exit;
+                        Rec.Delete();
+                        CurrPage.Update();
+                    end;
+                }
+            }
+
         }
     }
 }
