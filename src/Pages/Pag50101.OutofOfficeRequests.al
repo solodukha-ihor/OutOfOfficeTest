@@ -57,6 +57,18 @@ page 50101 "Out of Office Requests"
                         Page.Run(50102, Rec);
                     end;
                 }
+                action(Check)
+                {
+                    Caption = 'Check';
+                    ApplicationArea = Basic, Suite;
+                    Image = DocumentEdit;
+                    Promoted = true;
+                    Scope = Repeater;
+                    trigger OnAction()
+                    begin
+                        Page.Run(50102, Rec);
+                    end;
+                }
                 action(Remove)
                 {
                     Caption = 'Delete';

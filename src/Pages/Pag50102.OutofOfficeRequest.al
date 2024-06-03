@@ -14,7 +14,7 @@ page 50102 "Out of Office Request(Doc)"
                 Caption = 'General';
                 field(Status; Rec.Status) 
                 {
-                    Editable = false;
+                    Editable = true;
                 }
                 field("Start Date"; Rec."Start Date")
                 {

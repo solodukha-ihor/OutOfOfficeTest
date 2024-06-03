@@ -2,7 +2,7 @@ profile EmployeeSmart
 {
     Caption = 'Employee';
     Description = 'Employee';
-    Customizations = MyCustomization, MyCustomization1;
+    Customizations = MyCustomization, MyCustomization1, MyCustomization3;
     RoleCenter = "Out of Office Role Center";
 }
 
@@ -23,6 +23,20 @@ pagecustomization MyCustomization1 customizes "Out of Office Request(Doc)"
         modify("Rejection reason")
         {
             Editable = false;
+        }
+        modify(Status)
+        {
+            Editable = false;
+        }
+    }
+}
+pagecustomization MyCustomization3 customizes "Out of Office Requests"
+{ 
+    actions
+    {
+        modify(Check)
+        {
+            Visible = false;
         }
     }
 }
