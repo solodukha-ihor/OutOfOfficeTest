@@ -29,7 +29,10 @@ report 50100 "Out of Office Report"
             var
                 Employee: Record Employee;
             begin
-                DaysAbsent := ("End Date" - "Start Date") + 1;
+                if EndFilterDate > "End Date" then
+                    DaysAbsent := ("End Date" - "Start Date") + 1
+                else
+                    DaysAbsent := (EndFilterDate - "Start Date") + 1;
                 FormattedStartDate := FORMAT(StartFilterDate, 0, '<Day,2>/<Month,2>/<Year>');
                 FormattedEndDate := FORMAT(EndFilterDate, 0, '<Day,2>/<Month,2>/<Year>');
                 if Employee.Get("Employee No.") then
