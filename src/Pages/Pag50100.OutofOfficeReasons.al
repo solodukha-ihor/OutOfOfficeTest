@@ -12,14 +12,8 @@ page 50100 "Out of Office Reasons"
         {
             repeater(General)
             {
-                field(Code; Rec.Code)
-                {
-                
-                }
-                field(Description; Rec.Description) 
-                {
-                   
-                }
+                field(Code; Rec.Code) {}
+                field(Description; Rec.Description) {}
             }
         }
     }

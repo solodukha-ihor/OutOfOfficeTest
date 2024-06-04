@@ -42,6 +42,19 @@ page 50101 "Out of Office Requests"
                     Page.Run(50102, NewOutOfOfficeRequest);
                 end;
             }
+            action(RunReport)
+                {
+                    Caption = 'Out of Office Day Count';
+                    ApplicationArea = All;
+                    Promoted = true;
+                    PromotedCategory = Report;
+                    Image = Report;
+
+                    trigger OnAction()
+                    begin
+                       report.Run(Report::"Out of Office Report");
+                    end;
+                }
             group(Line)
             {
                 Caption = 'Line';
