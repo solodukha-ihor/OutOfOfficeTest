@@ -66,4 +66,12 @@ table 50101 "Out of Office Request"
             Clustered = true;
         }
     }
+    procedure GetEmployeeName(EmployeeNo: Code[20]): Text[100];
+        var
+            Employee: Record Employee;
+        begin
+            if Employee.Get(EmployeeNo) then
+                exit(Employee.FullName());
+            exit('');
+        end;
 }

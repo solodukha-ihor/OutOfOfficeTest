@@ -7,7 +7,14 @@ page 50103 "Out of Office Role Center"
     
     layout
     {
-        area(RoleCenter) {}
+        area(RoleCenter) 
+        {
+            part(OutOfOfficePart;"List Part Out Of Office")
+            {
+                Caption = 'Out of Office Today';
+                Editable = false;
+            }
+        }
     }
 
     actions
