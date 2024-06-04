@@ -19,6 +19,10 @@ pagecustomization AdminCustomization customizes "Out of Office Requests"
             {
                 Visible = false;
             }
+            modify(Remove)
+            {
+                Visible = false;
+            }
         }
 }
 pagecustomization AdminCustomization2 customizes "Out of Office Request(Doc)"
