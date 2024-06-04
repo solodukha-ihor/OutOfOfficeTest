@@ -38,5 +38,9 @@ pagecustomization MyCustomization3 customizes "Out of Office Requests"
         {
             Visible = false;
         }
+         modify(RunReport)
+         {
+            Visible = false;
+         }
     }
 }

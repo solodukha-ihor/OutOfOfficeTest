@@ -7,10 +7,7 @@ page 50103 "Out of Office Role Center"
     
     layout
     {
-        area(RoleCenter)
-        {
-            
-        }
+        area(RoleCenter) {}
     }
 
     actions
