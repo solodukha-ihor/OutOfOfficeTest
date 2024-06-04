@@ -12,15 +12,15 @@ page 50101 "Out of Office Requests"
         {
             repeater(General)
             {
-                field(Status; Rec.Status) {}
-                field("Start Time"; Rec."Start Time") {}
-                field("End Time"; Rec."End Time") {} 
-                field("Start Date"; Rec."Start Date") {}  
-                field("End Date"; Rec."End Date") {}  
-                field("Employee No."; Rec."Employee No.") {}            
-                field(Description; Rec.Description) {}              
-                field("Reason Code"; Rec."Reason Code") {}
-                field("Rejection reason"; Rec."Rejection reason") {}
+                field(Status; Rec.Status) { }
+                field("Start Time"; Rec."Start Time") { }
+                field("End Time"; Rec."End Time") { }
+                field("Start Date"; Rec."Start Date") { }
+                field("End Date"; Rec."End Date") { }
+                field("Employee No."; Rec."Employee No.") { }
+                field(Description; Rec.Description) { }
+                field("Reason Code"; Rec."Reason Code") { }
+                field("Rejection reason"; Rec."Rejection reason") { }
             }
         }
     }
@@ -43,18 +43,18 @@ page 50101 "Out of Office Requests"
                 end;
             }
             action(RunReport)
-                {
-                    Caption = 'Out of Office Day Count';
-                    ApplicationArea = All;
-                    Promoted = true;
-                    PromotedCategory = Report;
-                    Image = Report;
+            {
+                Caption = 'Out of Office Day Count';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                Image = Report;
 
-                    trigger OnAction()
-                    begin
-                       report.Run(Report::"Out of Office Report");
-                    end;
-                }
+                trigger OnAction()
+                begin
+                    report.Run(Report::"Out of Office Report");
+                end;
+            }
             group(Line)
             {
                 Caption = 'Line';
@@ -63,7 +63,6 @@ page 50101 "Out of Office Requests"
                     Caption = 'Modify';
                     ApplicationArea = Basic, Suite;
                     Image = DocumentEdit;
-                    Promoted = true;
                     Scope = Repeater;
                     trigger OnAction()
                     begin
@@ -75,7 +74,6 @@ page 50101 "Out of Office Requests"
                     Caption = 'Check';
                     ApplicationArea = Basic, Suite;
                     Image = DocumentEdit;
-                    Promoted = true;
                     Scope = Repeater;
                     trigger OnAction()
                     begin
@@ -87,7 +85,6 @@ page 50101 "Out of Office Requests"
                     Caption = 'Delete';
                     ApplicationArea = Basic, Suite;
                     Image = RemoveLine;
-                    Promoted = true;
                     Scope = Repeater;
                     trigger OnAction()
                     begin
