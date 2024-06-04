@@ -66,7 +66,10 @@ page 50101 "Out of Office Requests"
                     Scope = Repeater;
                     trigger OnAction()
                     begin
-                        Page.Run(50102, Rec);
+                        if Rec.Status = Rec.Status::New then
+                            Page.Run(50102, Rec)
+                        else
+                            Message('You can only modify requests with status "New".');
                     end;
                 }
                 action(Check)
