@@ -6,7 +6,7 @@
             "request": "launch",
             "type": "al",
             "environmentType": "OnPrem",
-            "server": "http://locapps",
+            "server": "http://bcserver1",
             "serverInstance": "BC",
             "authentication": "UserPassword",
             "startupObjectId": 50103,

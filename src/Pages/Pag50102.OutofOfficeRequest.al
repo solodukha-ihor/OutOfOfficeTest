@@ -52,8 +52,27 @@ page 50102 "Out of Office Request(Doc)"
                     Importance = Promoted;
                 }
                 field("Rejection reason"; Rec."Rejection reason") {}
+            }    
+        }
+
+        area(FactBoxes)
+        {
+            part("Attached Documents"; "Document Attachment Factbox")
+            {
+                ApplicationArea = All;
+                Caption = 'Attachments';
+                SubPageLink = "Table ID" = CONST(50101),
+                                            "Line No."= field("Entry No.");
                 
-                }
+            }
+            systempart(PyamentTermsLinks; Links)
+            {
+                ApplicationArea = RecordLinks;
+            }
+            systempart(PyamentTermsNotes; Notes)
+            {
+                ApplicationArea = Notes;
+            }
         }
     }
 
