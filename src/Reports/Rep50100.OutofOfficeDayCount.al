@@ -5,7 +5,7 @@ report 50100 "Out of Office Report"
     Caption = 'Out of Office Report';
     ApplicationArea = All;
     PreviewMode = Normal;
-    DefaultRenderingLayout = ReportLayout;
+    DefaultRenderingLayout = ReportLayoutRDLC;
 
 
     dataset
@@ -68,12 +68,17 @@ report 50100 "Out of Office Report"
 
     rendering
     {
-        layout(ReportLayout)
+        layout(ReportLayoutWord)
         {
             Type = Word;
             LayoutFile = 'src/Layouts/Report.docx';
-            Caption = 'LABCustomerList';
-            Summary = 'Summary';
+            Caption = 'ReportOutOfOfficeWord';
+        }
+        layout(ReportLayoutRDLC)
+        {
+            Type = RDLC;
+            LayoutFile = 'src/Layouts/Report.rdl';
+            Caption = 'ReportOutOfOfficeRDLC';
         }
     }
 
