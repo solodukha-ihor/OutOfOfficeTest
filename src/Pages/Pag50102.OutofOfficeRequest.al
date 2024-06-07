@@ -4,7 +4,9 @@ page 50102 "Out of Office Request(Doc)"
     Caption = 'Out of Office Request(Document)';
     PageType = Document;
     SourceTable = "Out of Office Request";
-    
+    DelayedInsert = false;
+    Editable = true;
+
     layout
     {
         area(Content)
@@ -12,7 +14,7 @@ page 50102 "Out of Office Request(Doc)"
             group(General)
             {
                 Caption = 'General';
-                field(Status; Rec.Status) 
+                field(Status; Rec.Status)
                 {
                     Editable = true;
                 }
@@ -26,12 +28,15 @@ page 50102 "Out of Office Request(Doc)"
                     ShowMandatory = true;
                     Importance = Promoted;
                 }
-                field(Description; Rec.Description) 
+                field(Description; Rec.Description)
                 {
                     ShowMandatory = true;
                     Importance = Promoted;
                 }
-                field("Employee No."; Rec."Employee No.") {}
+                field("Employee No."; Rec."Employee No.")
+                {
+                    Editable = false;
+                }
                 field("End Date"; Rec."End Date")
                 {
                     ShowMandatory = true;
@@ -42,7 +47,7 @@ page 50102 "Out of Office Request(Doc)"
                     ShowMandatory = true;
                     Importance = Promoted;
                 }
-                field("Entry No."; Rec."Entry No.") 
+                field("Entry No."; Rec."Entry No.")
                 {
                     Editable = false;
                 }
@@ -51,8 +56,8 @@ page 50102 "Out of Office Request(Doc)"
                     ShowMandatory = true;
                     Importance = Promoted;
                 }
-                field("Rejection reason"; Rec."Rejection reason") {}
-            }    
+                field("Rejection reason"; Rec."Rejection reason") { }
+            }
         }
 
         area(FactBoxes)
@@ -62,8 +67,8 @@ page 50102 "Out of Office Request(Doc)"
                 ApplicationArea = All;
                 Caption = 'Attachments';
                 SubPageLink = "Table ID" = CONST(50101),
-                                            "Line No."= field("Entry No.");
-                
+                                            "Line No." = field("Entry No.");
+
             }
             systempart(PyamentTermsLinks; Links)
             {
@@ -75,16 +80,4 @@ page 50102 "Out of Office Request(Doc)"
             }
         }
     }
-
-    trigger OnOpenPage()
-    var
-        Employee: Record Employee;
-        UserSetup: Record "User Setup";
-    begin
-        if UserSetup.Get(USERID) then begin
-            if Employee.Get(UserSetup."User ID") then begin
-                Rec."Employee No." := Employee."No.";
-            end;
-        end;
-    end;
 }

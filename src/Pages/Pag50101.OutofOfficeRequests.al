@@ -36,10 +36,18 @@ page 50101 "Out of Office Requests"
                 trigger OnAction()
                 var
                     NewOutOfOfficeRequest: Record "Out of Office Request";
+                    RequestPage: Page "Out of Office Request(Doc)";
+                    UserSetup: Record "User Setup";
+                    CurrentUserId: Text;
                 begin
                     NewOutOfOfficeRequest.Init();
-                    NewOutOfOfficeRequest.Insert(true);
-                    Page.Run(50102, NewOutOfOfficeRequest);
+                    CurrentUserId := UserId();
+                    if UserSetup.Get(CurrentUserId) then
+                    NewOutOfOfficeRequest."Employee No." := UserSetup."Employee No.";
+                    UserSetup.Modify();
+                    NewOutOfOfficeRequest.Insert();
+                    RequestPage.SetRecord(NewOutOfOfficeRequest);
+                    RequestPage.Run();
                 end;
             }
             action(RunReport)
@@ -101,4 +109,17 @@ page 50101 "Out of Office Requests"
 
         }
     }
+    trigger OnOpenPage()
+    var
+        UserSetup: Record "User Setup";
+        CurrentUserId: Text;
+        UserPer: Record "User Personalization";
+    begin
+        CurrentUserId := UserId();
+        if UserPer.Get(UserSecurityId()) and (UserPer."Profile ID" <> 'ADMINSMART') then begin
+            if UserSetup.Get(CurrentUserId) then begin
+                Rec.SetRange("Employee No.", UserSetup."Employee No.");
+            end;
+        end;
+    end;
 }
