@@ -1,0 +1,10 @@
+{
+    "al.codeAnalyzers": ["${CodeCop}","${PerTenantExtensionCop}"],
+    "al.enableCodeAnalysis": true,
+    "al.backgroundCodeAnalysis": true,
+    
+    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.ObjectNamePrefix": "PTE",
+    "CRS.RemovePrefixFromFilename": true
+}

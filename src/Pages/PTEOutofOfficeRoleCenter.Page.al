@@ -1,4 +1,4 @@
-page 50103 "Out of Office Role Center"
+page 50103 "PTE Out of Office Role Center"
 {
     ApplicationArea = All;
     Caption = 'Out of Office';
@@ -9,7 +9,7 @@ page 50103 "Out of Office Role Center"
     {
         area(RoleCenter) 
         {
-            part(OutOfOfficePart;"List Part Out Of Office")
+            part(OutOfOfficePart;"PTE List Part Out Of Office")
             {
                 Caption = 'Out of Office Today';
                 Editable = false;
@@ -23,13 +23,15 @@ page 50103 "Out of Office Role Center"
         {
             action(OfficeReason)
             {
+                ToolTip = 'New Out of Office Reasons';
                 Caption = 'Out of Office Reason';
-                RunObject = page "Out of Office Reasons";
+                RunObject = page "PTE Out of Office Reasons";
             }
             action(OfficeRequest)
             {
+                ToolTip = 'New Out of Office Requests';
                 Caption = 'Out of Office Request';
-                RunObject = page "Out of Office Requests";
+                RunObject = page "PTE Out of Office Requests";
             }
         }
     }

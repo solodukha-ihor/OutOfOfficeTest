@@ -1,5 +1,5 @@
 
-report 50100 "Out of Office Report"
+report 50100 "PTE Out of Office Report"
 {
     UsageCategory = ReportsAndAnalysis;
     Caption = 'Out of Office Report';
@@ -10,15 +10,15 @@ report 50100 "Out of Office Report"
 
     dataset
     {
-        dataitem("Out of Office Report"; "Out of Office Request")
+        dataitem("Out of Office Report"; "PTE Out of Office Request")
         {
             RequestFilterFields = "Employee No.";
             column(Employee_No_; "Employee No.") {}
             column(Reason_Code; "Reason Code") {}
             column(Employee_Name; EmployeeName) {}
             column(Days_of_Out; DaysAbsent) {}
-            column(Start_Date_Filter;FormattedStartDate) {}
-            column(End_Filter_Date;FormattedEndDate) {}
+            column(Start_Date_Filter; FormattedStartDate) {}
+            column(End_Filter_Date; FormattedEndDate) {}
 
             trigger OnPreDataItem()
             begin
@@ -55,10 +55,14 @@ report 50100 "Out of Office Report"
                     Caption = 'Filter';
                     field("Start Date Filter"; StartFilterDate)
                     {
+                        ToolTip = 'Start date of the report';
+                        Caption = 'Start Date Filter';
                         ApplicationArea = Basic, Suite;
                     }
                     field("End Date Filter"; EndFilterDate)
                     {
+                        ToolTip = 'End Date of the Filter';
+                        Caption = 'End Date Filter';
                         ApplicationArea = Basic, Suite;
                     }
                 }

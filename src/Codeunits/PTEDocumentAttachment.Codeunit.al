@@ -1,15 +1,15 @@
-codeunit 50100 DocumentAttachment
+codeunit 50100 "PTE Document Attachment"
 {
     [EventSubscriber(ObjectType::Page, Page::"Document Attachment Factbox", 'OnBeforeDrillDown', '', false, false)]
     local procedure OnBeforeDrillDown(DocumentAttachment: Record "Document Attachment"; var RecRef: RecordRef);
     var
-        OutOffice: Record "Out of Office Request";
+        OutOffice: Record "PTE Out of Office Request";
     begin
         case DocumentAttachment."Table ID" of
-            DATABASE::"Out of Office Request":
+            DATABASE::"PTE Out of Office Request":
                 begin
-                    RecRef.Open(DATABASE::"Out of Office Request");
-                    if OutOffice.Get(DocumentAttachment."Line No.") then
+                    RecRef.Open(DATABASE::"PTE Out of Office Request");
+                    if OutOffice.Get(DocumentAttachment."No.") then
                         RecRef.GetTable(OutOffice);
                 end;
         end;
@@ -19,14 +19,14 @@ codeunit 50100 DocumentAttachment
     local procedure OnAfterOpenForRecRef(var DocumentAttachment: Record "Document Attachment"; var RecRef: RecordRef);
     var
         FieldRef: FieldRef;
-        RecNo: Integer;
+        RecNo: Code[20];
     begin
         case RecRef.Number of
-            DATABASE::"Out of Office Request":
+            DATABASE::"PTE Out of Office Request":
                 begin
                     FieldRef := RecRef.Field(1);
                     RecNo := FieldRef.Value;
-                    DocumentAttachment.SetRange("Line No.", RecNo);
+                    DocumentAttachment.SetRange("No.", RecNo);
                 end;
         end;
     end;
@@ -35,14 +35,14 @@ codeunit 50100 DocumentAttachment
     local procedure OnAfterInitFieldsFromRecRef(var DocumentAttachment: Record "Document Attachment"; var RecRef: RecordRef)
     var
         FieldRef: FieldRef;
-        RecNo: Integer;
+        RecNo: Code[20];
     begin
         case RecRef.Number of
-            DATABASE::"Out of Office Request":
+            DATABASE::"PTE Out of Office Request":
                 begin
                     FieldRef := RecRef.Field(1);
                     RecNo := FieldRef.Value;
-                    DocumentAttachment.Validate("Line No.", RecNo);
+                    DocumentAttachment.Validate("No.", RecNo);
                 end;
         end;
     end;
