@@ -2,9 +2,9 @@ pageextension 50101 "PTE User Setup PageExtension" extends "User Setup"
 {
     layout
     {
-        addlast(Content)
+        addlast(Control1)
         {
-            field("PTE Employee No."; Rec."PTE Employee No.")
+            field("Employee No."; Rec."PTE Employee No.")
             {
                 Caption = 'Employee No.';
                 ToolTip = 'Add Employee';

@@ -11,8 +11,8 @@ table 50101 "PTE Out of Office Request"
             Caption = 'Entry No.';
 
             trigger OnValidate()
-            var
-            OutOffice: Record "PTE Out of Office Request";
+            // var
+            // OutOffice: Record "PTE Out of Office Request";
             begin
                 if "Entry No." <> xRec."Entry No." then begin
                     SalesSetup.Get();
@@ -42,6 +42,8 @@ table 50101 "PTE Out of Office Request"
             begin
                 if ("Start Date" < WorkDate()) then
                     Error('The start date cannot be earlier than the work date.');
+                if ("Start Date" > "End Date") and ("End Date" <> 0D) then
+                    Error('The end date cannot be earlier than the start date.');
                 if("Start Date" <> 0D) and ("End Date" <> 0D) and ("Start Time" <> 0T) and ("End Time" <> 0T) then
                     CalcAbsenceHours();
             end;
@@ -56,6 +58,8 @@ table 50101 "PTE Out of Office Request"
             begin
                 if ("Start Time" < 070000T) then
                     Error('The start time cannot be earlier than the 07:00 AM.');
+                if ("Start Time" > "End Time") then
+                    Error('The end time cannot be earlier than the start time.');
                 if("Start Date" <> 0D) and ("End Date" <> 0D) and ("Start Time" <> 0T) and ("End Time" <> 0T) then
                     CalcAbsenceHours();
             end;
@@ -67,7 +71,7 @@ table 50101 "PTE Out of Office Request"
 
             trigger OnValidate()
             begin
-                if ("Start Date" > "End Date") then
+                if ("Start Date" > "End Date") and ("Start Date" <> 0D) then
                     Error('The end date cannot be earlier than the start date.');
                 if("Start Date" <> 0D) and ("End Date" <> 0D) and ("Start Time" <> 0T) and ("End Time" <> 0T) then
                     CalcAbsenceHours();

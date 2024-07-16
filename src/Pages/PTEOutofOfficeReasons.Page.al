@@ -35,4 +35,12 @@ page 50100 "PTE Out of Office Reasons"
             Error('Field Description must be not empty');
         exit(true);
     end;
+
+    trigger OnOpenPage()
+    var
+        UserSetup: record "User Setup";
+    begin
+        UserSetup.Get(UserId());
+        Editable := UserSetup."PTE HR Manager";
+    end;
 }

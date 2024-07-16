@@ -146,37 +146,50 @@ page 50102 "PTE Out of Office Request(Doc)"
                     Rec.Status := Rec.Status::Declined;
                 end;
             }
+            action(InProgress) 
+            {
+                ToolTip = 'Do you set status "In Procces" this request?';
+                Caption = 'In Procces';
+                Enabled = IsManager;
+                trigger OnAction()
+                begin
+                    Rec.Status := Rec.Status::"In Process";
+                end;
+            }
         }
     }
 
     trigger OnOpenPage()
     var
+        Employee: Record Employee;
         CurrId: Text;
     begin
         CurrId := UserId();
         UsSetup.Get(CurrId);
         IsManager := UsSetup."PTE HR Manager";
         IsEdit := false;
-        if (Rec.Status = Rec.Status::New) then begin
+        Employee.SetRange("No.", UsSetup."PTE Employee No.");
+        if(Rec."Employee No." = Employee."No.") and (Rec.Status = Rec.Status::New) then 
             IsEdit := true;
-            if IsManager and (Rec."Entry No." <> '') then begin
-                Rec.Status := Rec.Status::"In Process";
-                Rec.Modify();
-            end;
-        end;
+        // if (Rec.Status = Rec.Status::New) then begin
+        //     IsEdit := true;
+        //     if IsManager and (Rec."Entry No." <> '') then begin
+        //         Rec.Status := Rec.Status::"In Process";
+        //         Rec.Modify();
+        //     end;
+        // end;
     end;
 
     trigger OnNewRecord(BelowxRec: Boolean)
     var
-        NewOutOfOfficeRequest: Record "PTE Out of Office Request";
         UserSetup: Record "User Setup";
         CurrentUserId: Text;
     begin
         CurrentUserId := UserId();
+        IsManager := false;
         if UserSetup.Get(CurrentUserId) then
-                    NewOutOfOfficeRequest."Employee No." := UserSetup."PTE Employee No.";
-                    UserSetup.Modify();
-                    SetRecord(NewOutOfOfficeRequest);
+                    Rec."Employee No." := UserSetup."PTE Employee No.";
+                    SetRecord(Rec);
     end;
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean
@@ -191,6 +204,7 @@ page 50102 "PTE Out of Office Request(Doc)"
                 if not Confirm('Some mandatory fields are not filled. Do you want to exit without saving?', false) then
                     exit(false)
                 else begin
+                    Rec.Insert();
                     Rec.Delete();
                     exit(true);
                 end;
